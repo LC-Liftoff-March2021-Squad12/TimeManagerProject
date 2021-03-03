@@ -1,6 +1,7 @@
 # Time Management Tracker
-### Group Mentor: Val Boaten
+
 ### Group members: Courtney Bowser, Shelby, Jon Damron, John Sperkowski, and Gloria Phan 
+#### Group Mentor: Val Boaten
 
 ## Overview: 
 In today’s world, where technology is quickly evolving, people easily get lost in their handheld devices and lose track of how much time they spend on those devices. As such, time management and productivity may become a major problem. To solve this problem, we are creating an all-in-one time management program.  It covers all bases for time management: a calendar for long term planning, an organized list of your to-do tasks for the day, and a workflow timer to help improve your productivity on completing those tasks. 
