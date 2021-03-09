@@ -1,6 +1,6 @@
 # Time Management Tracker
 
-### Group Members: Courtney Bowser, Shelby, Jon Damron, John Sperkowski, and Gloria Phan 
+### Group Members: Courtney Bowser, Shelby Donais, Jon Damron, John Sperkowski, and Gloria Phan 
 ### Group Mentor: Val Boaten
 
 ## Overview: 
