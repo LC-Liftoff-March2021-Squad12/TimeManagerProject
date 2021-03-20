@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TimeManagerProject.Migrations
 {
-    public partial class InitCreate : Migration
+    public partial class InitSetup : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
