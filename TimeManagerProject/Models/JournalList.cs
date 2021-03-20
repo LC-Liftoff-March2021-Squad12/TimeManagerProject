@@ -19,9 +19,9 @@ namespace TimeManagerProject.Models
 			Name = name;
 		}
 
-		public JournalList(string name)
-		{
-		}
+		//public JournalList(string name)
+		//{
+		//}
 
 	}
 }
