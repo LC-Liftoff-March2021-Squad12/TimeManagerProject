@@ -17,5 +17,6 @@ namespace TimeManagerProject.Data
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }
+
     }
 }
