@@ -34,11 +34,15 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="Areas\Identity\Data\**" />
     <Compile Remove="Data\Migrations\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="Areas\Identity\Data\**" />
     <Content Remove="Data\Migrations\**" />
+    <EmbeddedResource Remove="Areas\Identity\Data\**" />
     <EmbeddedResource Remove="Data\Migrations\**" />
     <None Remove="$(SpaRoot)**" />
+    <None Remove="Areas\Identity\Data\**" />
     <None Remove="Data\Migrations\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
