@@ -18,5 +18,9 @@ namespace TimeManagerProject.Data
         {
         }
 
+        public DbSet<Calendar> Calendars { get; set; }
+        public DbSet<CalendarEntry> CalendarEntries { get; set; }
+
+
     }
 }
