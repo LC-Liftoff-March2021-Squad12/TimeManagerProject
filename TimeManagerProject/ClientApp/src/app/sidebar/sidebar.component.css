@@ -3,8 +3,12 @@
 .wrapper {
     display: flex;
     align-items: stretch;
+    min-height: 100vh;
 }
-
+.login{
+    font-size: x-large;
+    color: darkblue;
+}
 a[data-toggle="collapse"] {
     position: relative;
 }
