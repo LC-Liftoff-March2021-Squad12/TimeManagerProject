@@ -17,5 +17,10 @@ namespace TimeManagerProject.Data
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }
+
+        public DbSet<Calendar> Calendars { get; set; }
+        public DbSet<CalendarEntry> CalendarEntries { get; set; }
+
+
     }
 }
