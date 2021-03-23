@@ -1,50 +1,28 @@
-<!-- <div class="wrapper"> -->
-    <!-- Sidebar -->
+<div class="wrapper full-height">
+    
     <nav id="sidebar">
         <div class="sidebar-header">
             <h3>Time Manager Project</h3>
         </div>
 
         <ul class="list-unstyled components">
-            <p>heading</p>
             <li class="active">
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li>
-                        <a href="#">Home 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Home 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Home 3</a>
-                    </li>
-                </ul>
+                <a href="/" >Home</a>
             </li>
             <li>
-                <a href="#">About</a>
+                <a href="/calender" >Calender/Planner</a>
             </li>
             <li>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-                <ul class="collapse list-unstyled" id="pageSubmenu">
-                    <li>
-                        <a href="#">Page 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 3</a>
-                    </li>
-                </ul>
+                <a href="/counter" >Counter</a>
             </li>
             <li>
-                <a href="#">Portfolio</a>
+                <a href="/todo">To-Do List</a>
             </li>
             <li>
-                <a href="#">Contact</a>
+                <a href="/journal">Journal</a>
             </li>
         </ul>
+        <a  class="login" href="/fetch-data">Login</a>
     </nav>
-
-<!-- </div> -->
+<router-outlet></router-outlet>
+</div>
