@@ -50,6 +50,23 @@ namespace TimeManagerProject.Controllers
                 return Ok(calendarEvent);
             }
 
+        [HttpPost]
+        public ActionResult AddUpdateEvent(CalendarEntry newEvent)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (newEvent == null)
+            {
+                return NotFound();
+            }
+            DbContext.CalendarEntries.Add(newEvent);
+            DbContext.SaveChanges();
+            return Ok(newEvent);
+        }
+
         [HttpDelete("{id}")]
         public ActionResult DeleteEvent([FromRoute] int id)
         {

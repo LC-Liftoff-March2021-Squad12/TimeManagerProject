@@ -20,6 +20,8 @@ namespace TimeManagerProject.Data
 
         public DbSet<Calendar> Calendars { get; set; }
         public DbSet<CalendarEntry> CalendarEntries { get; set; }
+        public DbSet<JournalList> UserJournals { get; set; }
+        public DbSet<JournalEntry> JournalEntries { get; set; }
 
 
     }
