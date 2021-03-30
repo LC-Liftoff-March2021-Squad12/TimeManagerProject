@@ -28,9 +28,6 @@ namespace TimeManagerProject.Controllers
             return DbContext.CalendarEntries.ToList();
         }
 
-        //[HttpPost]
-        //public ActionResult
-
         [HttpGet]
         [Route("{CalendarId}")]
         public ActionResult GetUserCalendar([FromRoute] int calendarId)
@@ -87,6 +84,5 @@ namespace TimeManagerProject.Controllers
 
             return Ok(calendarEvent);
         }
-
     }
 }
