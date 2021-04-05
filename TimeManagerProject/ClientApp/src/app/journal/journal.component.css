@@ -1,0 +1,30 @@
+div{
+    padding-left: 1cm;
+}
+#title{
+    margin-right: 1cm;
+    margin-bottom: 1cm;
+}
+#journal{
+    padding: .5cm;
+    width: 25cm;
+    height: 10cm;
+}
+#Title, #Journal{
+    margin-top: 5cm;
+    background-color: royalblue;
+    margin-right: .25cm;
+    color: white;
+}
+
+#entries{
+   padding-left: 4cm;
+   color: rgb(2, 19, 70);
+
+}
+button{
+    margin-left: .5cm;
+    margin-right: .5cm;
+    border-color: royalblue;
+    color: rgb(2, 26, 99);
+}

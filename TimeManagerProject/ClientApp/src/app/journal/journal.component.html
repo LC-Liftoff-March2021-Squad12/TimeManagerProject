@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="md-form">
+    <input type="text" placeholder="Title" id="title" ng-required="true">
+    <input placeholder="date" ng-required="true" type="text" id="date">
+    <textarea class="md-textarea form-control " placeholder="Journal your heart out!" type="text" id="journal"></textarea>
+    <button type="button">Save</button>
+  </div>
+
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm" id="Title">Title/Date</div>
+    <div class="col-md" id="Journal">First sentence</div>
+  </div>
+</div>
+<div class="container" id="entries">
+  <div class="row" >
+    <a class="col-sm">{{ title.value }} {{ date.value }}</a>
+    <a class="col-sm"> {{ journal.value }} </a>
+    <button type="button">Delete</button>
+    <button type="button">Edit</button>
+  </div>
+</div>
