@@ -14,6 +14,7 @@ import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ToDoListComponent } from './to-do-list/to-do-list.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     CounterComponent,
     FetchDataComponent,
     SidebarComponent,
-    NavbarComponent
+    NavbarComponent,
+    ToDoListComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -34,6 +36,7 @@ import { NavbarComponent } from './navbar/navbar.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
+      { path: 'to-do-list', component: ToDoListComponent, canActivate: [AuthorizeGuard] }
     ])
   ],
   providers: [

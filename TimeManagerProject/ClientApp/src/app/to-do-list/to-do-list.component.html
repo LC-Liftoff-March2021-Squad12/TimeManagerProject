@@ -1,0 +1,31 @@
+<h1>To-do List</h1>
+<nav id="todo">
+  <div class="todo-header">
+  </div>
+</nav>
+
+<div>
+  <button class="addTask" (click)="addTask()">Add Task</button>
+</div>
+
+<div class="task" *ngFor="let task of toDoList; let i = index">
+
+  <div>
+    <span class="name"> Task: </span>
+    <input [(ngModel)]="task.task" type="text" id="myTask" placeholder="Enter a task" />
+  </div>
+
+  <div>
+    <span class="delete">
+      <button class="deleteTask" (click)="deleteTask(i)"> Delete Task</button>
+    </span>
+  </div>
+
+</div>
+
+
+
+
+
+
+
