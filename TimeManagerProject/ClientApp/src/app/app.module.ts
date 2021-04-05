@@ -14,6 +14,7 @@ import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ToDoListComponent } from './to-do-list/to-do-list.component';
 import { JournalComponent } from './journal/journal.component';
 
 @NgModule({
@@ -25,6 +26,7 @@ import { JournalComponent } from './journal/journal.component';
     FetchDataComponent,
     SidebarComponent,
     NavbarComponent,
+    ToDoListComponent,
     JournalComponent
   ],
   imports: [
@@ -36,6 +38,7 @@ import { JournalComponent } from './journal/journal.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
+      { path: 'to-do-list', component: ToDoListComponent, canActivate: [AuthorizeGuard] },
       { path: 'journal', component: JournalComponent},
     ])
   ],

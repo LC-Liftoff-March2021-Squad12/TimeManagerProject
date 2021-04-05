@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+}
+
+input {
+    font-size: 18px;
+    color: black;
+}
+
+.addTask {
+    padding: 2.5px;
+    width: 40%;
+    background-color: lightgreen;
+    float: inherit;
+    text-align: center;
+    font-size: 15px;
+    cursor: default;
+    transition: 0.2s;
+    border-radius: 0;
+}
+
+.addTask:hover {
+    background-color: limegreen;
+}
+
+.deleteTask {
+  padding: 2.5px;
+  width: 40%;
+  background-color: lightgrey;
+  float: inherit;
+  text-align: center;
+  font-size: 15px;
+  cursor: default;
+  transition: 0.2s;
+  border-radius: 0;
+}
+.deleteTask:hover {
+    background-color: lightsalmon;
+}
+
+.name {
+    background-color: lightpink;
+}
+
+
