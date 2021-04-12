@@ -19,7 +19,7 @@ describe('To-Do-ListComponent', function () {
         var titleText = fixture.nativeElement.querySelector('h1').textContent;
         expect(titleText).toEqual('To-do List');
     }));
-    it('should create a task list starting with 1, then increments by 1 when clicked', testing_1.async(function () {
+    it('should create a task list, then increments by 1 when clicked', testing_1.async(function () {
         var countElement = fixture.nativeElement.querySelector('button');
         expect(countElement.textContent).toEqual('1');
         fixture.detectChanges();
