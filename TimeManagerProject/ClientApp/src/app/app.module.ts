@@ -15,6 +15,7 @@ import { AuthorizeInterceptor } from 'src/api-authorization/authorize.intercepto
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ToDoListComponent } from './to-do-list/to-do-list.component';
+import { JournalComponent } from './journal/journal.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ToDoListComponent } from './to-do-list/to-do-list.component';
     SidebarComponent,
     NavbarComponent,
     ToDoListComponent,
+    JournalComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -36,7 +38,8 @@ import { ToDoListComponent } from './to-do-list/to-do-list.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
-      { path: 'to-do-list', component: ToDoListComponent, canActivate: [AuthorizeGuard] }
+      { path: 'to-do-list', component: ToDoListComponent, canActivate: [AuthorizeGuard] },
+      { path: 'journal', component: JournalComponent},
     ])
   ],
   providers: [
