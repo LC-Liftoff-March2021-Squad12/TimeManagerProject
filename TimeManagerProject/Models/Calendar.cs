@@ -9,9 +9,10 @@ namespace TimeManagerProject.Models
     public class Calendar
     {
         [Required]
+        [Key]
         public int calendarId { get; set; }
         [Required]
-        public ApplicationUser user { get; set;}
+        public ApplicationUser User { get; set;}
         public List<CalendarEntry> calendarEntries { get; set; }
     }
 

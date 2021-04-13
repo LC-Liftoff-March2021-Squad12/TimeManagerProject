@@ -9,17 +9,16 @@ namespace TimeManagerProject.Models
     public class CalendarEntry
     {
         [Required]
-        public int id { get; set; }
-        public string apptStartDate { get; set; }
-        public string apptEndDate { get; set; }
-        public string apptStartTime { get; set; }
-        public string apptEndTime { get; set; }
-        public DateTimeOffset publishDate { get; set; }
-
+        public int Id { get; set; }
+        public string ApptStartDate { get; set; }
+        public string ApptEndDate { get; set; }
+        public string ApptStartTime { get; set; }
+        public string ApptEndTime { get; set; }
+        public DateTimeOffset PublishDate { get; set; }
         [StringLength(100)]
-        string title { get; set; }
+        public string Title { get; set; }
         [StringLength(200)]
-        public string description { get; set; }
+        public string Description { get; set; }
         
     }
 }
