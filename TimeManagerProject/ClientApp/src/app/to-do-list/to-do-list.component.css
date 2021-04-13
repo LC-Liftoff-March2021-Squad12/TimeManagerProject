@@ -23,6 +23,22 @@ input {
     background-color: limegreen;
 }
 
+.saveTask {
+  padding: 2px;
+  width: 40%;
+  background-color: lightskyblue;
+  float: inherit;
+  text-align: center;
+  font-size: 15px;
+  cursor: default;
+  transition: 0.2s;
+  border-radius: 0;
+}
+
+  .saveTask:hover {
+    background-color: lightseagreen;
+  }
+
 .deleteTask {
   padding: 2.5px;
   width: 40%;

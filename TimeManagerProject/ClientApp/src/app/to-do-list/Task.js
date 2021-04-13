@@ -8,3 +8,7 @@ var Task = /** @class */ (function () {
 }());
 exports.Task = Task;
 //# sourceMappingURL=task.js.map
+
+Task.controller('Task', function ($scope, $localStorage) {
+  $scope.saveToLocalStorage();
+});
