@@ -12,23 +12,26 @@ namespace TimeManagerProject.Models
 	/// </summary>
 	public class JournalEntry
 	{
-		public string Name {get; set;}
-		public string Description {get; set;}
+		[StringLength(100)]
+		public string Title {get; set;}
+		public string Body {get; set;}
 		public int Id {get; set;}
+		public DateTime Date { get; set; }
 
 		public JournalEntry()
 			{
 			}
 
-		public JournalEntry(string name, string description)
+		public JournalEntry(string title, string body)
 		{
-			Name = name;
-			Description = description;
+			Title = title;
+			Body = body;
+			Date = DateTime.Now;
 		}
 
         public override string ToString()
         {
-            return Name;
+            return Title;
         }
 
         public override bool Equals(object obj)
