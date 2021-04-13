@@ -48,7 +48,7 @@ namespace TimeManagerProject.Controllers
             }
 
         [HttpPost]
-        public ActionResult AddUpdateEvent(CalendarEntry newEvent)
+        public ActionResult AddEvent(CalendarEntry newEvent)
         {
             if (!ModelState.IsValid)
             {
@@ -83,6 +83,33 @@ namespace TimeManagerProject.Controllers
             DbContext.SaveChanges();
 
             return Ok(calendarEvent);
+        }
+
+        [HttpPost]
+        public ActionResult EditEvent(int id, CalendarEntry newEvent)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (newEvent == null)
+            {
+                return NotFound();
+            }
+
+            var calendarEvent = DbContext.CalendarEntries.Find(id);
+
+            calendarEvent.ApptEndDate = newEvent.ApptEndDate;
+            calendarEvent.ApptStartDate = newEvent.ApptStartDate;
+            calendarEvent.ApptStartTime = newEvent.ApptStartTime;
+            calendarEvent.ApptEndTime = newEvent.ApptEndTime;
+            calendarEvent.Description = newEvent.Description;
+            calendarEvent.Title = newEvent.Title;
+
+            DbContext.CalendarEntries.Update(calendarEvent);
+            DbContext.SaveChanges();
+            return Ok(newEvent);
         }
     }
 }

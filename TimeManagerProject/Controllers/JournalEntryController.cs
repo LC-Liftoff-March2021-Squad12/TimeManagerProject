@@ -46,7 +46,7 @@ namespace TimeManagerProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddUpdateJournal(JournalEntry newJournal)
+        public ActionResult AddJournal(JournalEntry newJournal)
         {
             if (!ModelState.IsValid)
             {
@@ -83,7 +83,28 @@ namespace TimeManagerProject.Controllers
             return Ok(journalEntry);
         }
 
+        [HttpPost]
+        public ActionResult EditJournal(int id, JournalEntry editedJournal)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
+            if (editedJournal == null)
+            {
+                return NotFound();
+            }
+
+            var origJournal = DbContext.JournalEntries.Find(id);
+
+            origJournal.Title = editedJournal.Title;
+            origJournal.Body = editedJournal.Body;
+
+            DbContext.JournalEntries.Update(origJournal);
+            DbContext.SaveChanges();
+            return Ok(origJournal);
+        }
 
     }
 }
