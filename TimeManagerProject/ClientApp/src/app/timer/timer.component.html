@@ -1,1 +1,23 @@
-<p>timer works!</p>
+<div class="card-body">
+    <div class="mb-3">
+      <h1> Time to Work! </h1>
+      <countdown #cd1 [config]="{ leftTime: 60 * 30 }"></countdown>
+      <div>
+        <button (click)="cd1.begin()" class="btn btn-link btn-sm">Start</button>
+        <button (click)="cd1.stop()" class="btn btn-link btn-sm">Stop</button>
+        <button (click)="cd1.pause()" class="btn btn-link btn-sm">Pause</button>
+        <button (click)="cd1.resume()" class="btn btn-link btn-sm">Resume</button>
+        <button (click)="cd1.restart()" class="btn btn-link btn-sm">Restart</button>
+      </div>
+      <div class="mb-3">
+      <h1> Time to Play! </h1>
+        <countdown #cd2 [config]="{ leftTime: 60 * 5 }"></countdown>
+          <div>
+            <button (click)="cd2.begin()" class="btn btn-link btn-sm">Start</button>
+            <button (click)="cd2.stop()" class="btn btn-link btn-sm">Stop</button>
+            <button (click)="cd2.pause()" class="btn btn-link btn-sm">Pause</button>
+            <button (click)="cd2.resume()" class="btn btn-link btn-sm">Resume</button>
+            <button (click)="cd2.restart()" class="btn btn-link btn-sm">Restart</button>
+          </div>
+        </div>
+    </div>

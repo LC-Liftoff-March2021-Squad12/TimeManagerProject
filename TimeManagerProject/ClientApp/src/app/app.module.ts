@@ -17,7 +17,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ToDoListComponent } from './to-do-list/to-do-list.component';
 import { JournalComponent } from './journal/journal.component';
 import { TimerComponent } from './timer/timer.component';
-import { CountdownModule } from 'ngx-countdown';
+import { CountdownGlobalConfig, CountdownModule } from 'ngx-countdown';
 
 @NgModule({
   declarations: [
@@ -48,6 +48,7 @@ import { CountdownModule } from 'ngx-countdown';
     ])
   ],
   providers: [
+    CountdownGlobalConfig,
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
