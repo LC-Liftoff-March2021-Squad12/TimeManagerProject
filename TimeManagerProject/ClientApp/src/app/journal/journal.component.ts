@@ -11,9 +11,16 @@ import { Component } from '@angular/core';
  
 
 export class JournalComponent {
+title = '';
+date = '';
+journal = '';
+entries=[];
 
   getValues(){
-    document.getElementById('entry1').innerHTML = 
-     document.getElementById('title').nodeValue;
+    this.title = document.getElementById('title').value + ' ';
+    this.date = document.getElementById('date').value;
+    this.journal = document.getElementById('journal').value;
   }
+
+
 }
