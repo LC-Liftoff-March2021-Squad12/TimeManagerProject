@@ -1,5 +1,4 @@
-import { Component,Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
 
 
 @Component({
@@ -8,27 +7,20 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./journal.component.css']
 })
 
+ 
+ 
+
 export class JournalComponent {
-  public details: JournalEntry[];
+title = '';
+date = '';
+journal = '';
+entries=[];
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl:string){
-    http.get<JournalEntry[]>(baseUrl + 'JournalEntry').subscribe(result =>{
-      this.details = result;
-    }, error => console.error(error)
-    )
+  getValues(){
+    this.title = document.getElementById('title').value + ' ';
+    this.date = document.getElementById('date').value;
+    this.journal = document.getElementById('journal').value;
   }
+
+
 }
-
- interface JournalEntry {
-    title: string;
-    date: string;
-    journalEntry: string;
- }
-
-
-
-
-
-
-
-
