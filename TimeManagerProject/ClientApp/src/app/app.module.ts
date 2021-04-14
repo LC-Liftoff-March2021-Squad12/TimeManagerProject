@@ -16,6 +16,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ToDoListComponent } from './to-do-list/to-do-list.component';
 import { JournalComponent } from './journal/journal.component';
+import { TimerComponent } from './timer/timer.component';
+import { CountdownGlobalConfig, CountdownModule } from 'ngx-countdown';
 
 @NgModule({
   declarations: [
@@ -27,22 +29,26 @@ import { JournalComponent } from './journal/journal.component';
     SidebarComponent,
     NavbarComponent,
     ToDoListComponent,
-    JournalComponent
+    JournalComponent,
+    TimerComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     ApiAuthorizationModule,
+    CountdownModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
       { path: 'to-do-list', component: ToDoListComponent, canActivate: [AuthorizeGuard] },
       { path: 'journal', component: JournalComponent},
+      { path: 'timer', component: TimerComponent}
     ])
   ],
   providers: [
+    CountdownGlobalConfig,
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
