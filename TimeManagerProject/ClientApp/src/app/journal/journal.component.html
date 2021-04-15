@@ -10,13 +10,13 @@
 <div class="container">
   <div class="row">
     <div class="col-sm" id="Title">Title/Date</div>
-    <div class="col-md" id="Journal">First sentence</div>
+    <div class="col-md" id="Journal">Journal Entries</div>
   </div>
 </div>
 <div class="container" id="entries">
   <div class="row" >
-    <a class="col-sm">{{ title }} {{ date }}</a>
-    <a class="col-sm"> {{ journal }} </a>
+    <a class="col-sm">{{ title.value }} {{ date.value }}</a>
+    <a class="col-sm"> {{ journal.value }} </a>
     <button type="button">Delete</button>
     <button type="button">Edit</button>
   </div>
