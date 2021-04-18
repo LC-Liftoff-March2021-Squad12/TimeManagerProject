@@ -7,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./to-do-list.component.css']
 })
 export class ToDoListComponent implements OnInit{
+  public tasks: TaskList;
 
-  constructor() { }
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    http.get<TaskList[]>(baseUrl + 'to-do-list').subscribe(result => {
+      this.tasks = result;
+    }, error => console.error(error));
+  }
 
   ngOnInit() {
   }
