@@ -9,8 +9,8 @@ using TimeManagerProject.Data;
 namespace TimeManagerProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210417024955_InitMigration")]
-    partial class InitMigration
+    [Migration("20210418010712_InitCreate")]
+    partial class InitCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

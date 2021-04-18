@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web.Http.Description;
+using System.Web;
 using TimeManagerProject.Data;
 using TimeManagerProject.Models;
 using System.Threading.Tasks;
@@ -13,11 +13,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using System.Xml.Linq;
-using System.Web.Http;
 
 namespace TaskLists.Controllers
 {
-    public class TaskListsController : ApiController
+    public class TaskListsController : ControllerBase
     {
         ApplicationDbContext db;
 
@@ -34,8 +33,9 @@ namespace TaskLists.Controllers
         }
 
         // GET: api/TaskLists/5
-        [ResponseType(typeof(TaskList))]
-        public IHttpActionResult GetTaskList(int id)
+        [HttpGet]
+        //[ResponseType(typeof(TaskList))]
+        public ActionResult GetTaskList(int id)
         {
             TaskList taskList = db.Tasks.Find(id);
             if (taskList == null)
@@ -46,9 +46,13 @@ namespace TaskLists.Controllers
             return Ok(taskList);
         }
 
+        [HttpGet]
+        public ActionResult Get() => Ok(db.Tasks.ToList());
+
         // PUT: api/TaskLists/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutTaskList(int id, TaskList taskList)
+        [HttpPut]
+        //[ResponseType(typeof(void))]
+        public ActionResult PutTaskList(int id, TaskList taskList)
         {
             if (!ModelState.IsValid)
             {
@@ -78,12 +82,13 @@ namespace TaskLists.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(taskList);
         }
 
         // POST: api/TaskLists
-        [ResponseType(typeof(TaskList))]
-        public IHttpActionResult PostTaskList(TaskList taskList)
+        [HttpPost]
+        //[ResponseType(typeof(TaskList))]
+        public ActionResult PostTaskList(TaskList taskList)
         {
             if (!ModelState.IsValid)
             {
@@ -97,8 +102,9 @@ namespace TaskLists.Controllers
         }
 
         // DELETE: api/TaskLists/5
-        [ResponseType(typeof(TaskList))]
-        public IHttpActionResult DeleteTaskList(int id)
+        [HttpDelete]
+        //[ResponseType(typeof(TaskList))]
+        public ActionResult DeleteTaskList(int id)
         {
             TaskList taskList = db.Tasks.Find(id);
             if (taskList == null)
@@ -112,14 +118,14 @@ namespace TaskLists.Controllers
             return Ok(taskList);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
 
         private bool TaskListExists(int id)
         {
