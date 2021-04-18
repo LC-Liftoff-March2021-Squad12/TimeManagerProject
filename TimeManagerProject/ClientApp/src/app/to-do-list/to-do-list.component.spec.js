@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var testing_1 = require("@angular/core/testing");
+var Task_1 = require("./Task");
 var to_do_list_component_1 = require("./to-do-list.component");
 describe('To-Do-ListComponent', function () {
     var component;
@@ -23,6 +24,10 @@ describe('To-Do-ListComponent', function () {
         var countElement = fixture.nativeElement.querySelector('button');
         expect(countElement.textContent).toEqual('1');
         fixture.detectChanges();
+    }));
+    it('should create an instance', testing_1.async(function () {
+        var task = fixture.nativeElement.querySelector('description').textContent;
+        expect(new Task_1.Task()).toBeTruthy();
     }));
 });
 //# sourceMappingURL=to-do-list.component.spec.js.map

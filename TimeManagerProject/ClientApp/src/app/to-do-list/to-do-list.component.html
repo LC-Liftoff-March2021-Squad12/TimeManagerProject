@@ -1,3 +1,27 @@
+<section class="todolist">
+  <header class="header">
+    <h1>To-do List</h1>
+    <input class="task" placeholder="Enter a task" autofocus="" [(ngModel)]="newTask.description" (keyup.enter)="addTask()" />
+  </header>
+
+<section class="main" *ngIf="task.length > 0">
+  <ul class="todo-list">
+    <li> *ngFor="let task of toDoList" [class.completed]="task.completed">
+      <div class="view">
+        <input class="toggle" type="checkbox" (click)="toggleTaskCompleted(task)" [checked]="task.completed" />
+        <label {{task.description}}</label>
+        <button class="deleteTask" (click)="deleteTask(task)"></button>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<footer class="footer" *ngIf="task.length > 0">
+  <span class="task-count"><strong>{{task.length}}</strong> {{task.length == 1? 'task': 'tasks'}} left </span>
+</footer>
+</section>
+
+
 <h1>To-do List</h1>
 <nav id="todo">
   <div class="todo-header">

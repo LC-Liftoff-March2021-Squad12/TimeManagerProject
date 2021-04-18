@@ -14,17 +14,25 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using System.Xml.Linq;
 
-namespace TaskLists.Controllers
+namespace TimeManagerProject.Controllers
 {
+    [Authorize]
+    [ApiController]
+    [Route("[controller]")]
     public class TaskListsController : ControllerBase
     {
-        ApplicationDbContext db;
+        public readonly ApplicationDbContext DbContext;
 
-        public TaskListsController(ApplicationDbContext db)
+        public TaskListsController(ApplicationDbContext dbContext)
         {
-            this.db = db;
+            DbContext = dbContext;
         }
 
+        [HttpGet]
+        public ActionResult<List<TaskEntry>> Get()
+        {
+            return DbContext.TaskEntries.ToList();
+        }
 
         // GET: api/TaskLists
         public IQueryable<TaskList> GetTasks()

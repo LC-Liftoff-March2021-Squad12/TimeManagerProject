@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Task } from './Task';
 
 import { ToDoListComponent } from './to-do-list.component';
 
@@ -28,4 +29,10 @@ describe('To-Do-ListComponent', () => {
     expect(countElement.textContent).toEqual('1');
     fixture.detectChanges();
   }));
+
+  it('should create an instance', async(() => {
+    const task = fixture.nativeElement.querySelector('description').textContent;
+    expect(new Task()).toBeTruthy();
+  }));
+
 });

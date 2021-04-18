@@ -6,9 +6,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TimeManagerProject.Models
 {
-	/// <summary>
-	/// Journal List Model.
-	/// </summary>
 	public class JournalList
 	{
 		public string Name { get; set; }
@@ -22,10 +19,6 @@ namespace TimeManagerProject.Models
 		{
 			Name = name;
 		}
-
-		//public JournalList(string name)
-		//{
-		//}
 
 	}
 }
