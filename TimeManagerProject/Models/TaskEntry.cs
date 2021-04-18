@@ -22,9 +22,10 @@ namespace TimeManagerProject.Models
         public TaskEntry()
         { }
 
-        public TaskEntry(string description)
+        public TaskEntry(string description, bool isDone)
         {
             Description = description;
+            IsDone = isDone;
         }
 
         public override string ToString()

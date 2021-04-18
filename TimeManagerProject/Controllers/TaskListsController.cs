@@ -34,18 +34,17 @@ namespace TimeManagerProject.Controllers
             return DbContext.TaskEntries.ToList();
         }
 
-        // GET: api/TaskLists
-        public IQueryable<TaskList> GetTasks()
-        {
-            return db.Tasks;
-        }
-
-        // GET: api/TaskLists/5
         [HttpGet]
-        //[ResponseType(typeof(TaskList))]
-        public ActionResult GetTaskList(int id)
+        [Route("{TaskId}")]
+        public ActionResult GetTasks([FromRoute] int taskId)
         {
-            TaskList taskList = db.Tasks.Find(id);
+            var taskList = DbContext.Tasks.Find(taskId);
+            
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             if (taskList == null)
             {
                 return NotFound();
@@ -54,90 +53,70 @@ namespace TimeManagerProject.Controllers
             return Ok(taskList);
         }
 
-        [HttpGet]
-        public ActionResult Get() => Ok(db.Tasks.ToList());
-
-        // PUT: api/TaskLists/5
         [HttpPut]
-        //[ResponseType(typeof(void))]
-        public ActionResult PutTaskList(int id, TaskList taskList)
+        public ActionResult AddTask (TaskEntry newTask)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != taskList.Id)
+            if (newTask == null)
             {
-                return BadRequest();
+                return NotFound();
             }
-
-            db.Entry(taskList).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TaskListExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return Ok(taskList);
+            DbContext.TaskEntries.Add(newTask);
+            DbContext.SaveChanges();
+            return Ok(newTask);
         }
 
-        // POST: api/TaskLists
-        [HttpPost]
-        //[ResponseType(typeof(TaskList))]
-        public ActionResult PostTaskList(TaskList taskList)
+        [HttpDelete("{id}")]
+        public ActionResult DeleteTask ([FromRoute] int id)
         {
+            var taskEntry = DbContext.TaskEntries.Find(id);
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Tasks.Add(taskList);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = taskList.Id }, taskList);
-        }
-
-        // DELETE: api/TaskLists/5
-        [HttpDelete]
-        //[ResponseType(typeof(TaskList))]
-        public ActionResult DeleteTaskList(int id)
-        {
-            TaskList taskList = db.Tasks.Find(id);
-            if (taskList == null)
+            if (taskEntry == null)
             {
                 return NotFound();
             }
 
-            db.Tasks.Remove(taskList);
-            db.SaveChanges();
+            DbContext.TaskEntries.Remove(taskEntry);
+            DbContext.SaveChanges();
 
-            return Ok(taskList);
+            return Ok(taskEntry);
         }
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
+        [HttpPost]
+        public ActionResult CompletedTask (int id, TaskEntry completedTask)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (completedTask == null)
+            {
+                return NotFound();
+            }
+
+            var incompleteTask = DbContext.TaskEntries.Find(id);
+
+            incompleteTask.Description = completedTask.Description;
+            incompleteTask.IsDone = completedTask.IsDone;
+
+            DbContext.TaskEntries.Update(incompleteTask);
+            DbContext.SaveChanges();
+            return Ok(incompleteTask);
+        }
 
         private bool TaskListExists(int id)
         {
-            return db.Tasks.Count(e => e.Id == id) > 0;
+            return DbContext.Tasks.Count(e => e.Id == id) > 0;
         }
     }
 }
