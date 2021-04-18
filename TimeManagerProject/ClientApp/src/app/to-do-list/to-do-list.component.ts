@@ -1,5 +1,6 @@
 import { Task } from '../to-do-list/task.js';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-to-do-list-component',
@@ -7,16 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./to-do-list.component.css']
 })
 export class ToDoListComponent implements OnInit{
-  public tasks: TaskList;
+  public tasks: TaskList[];
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     http.get<TaskList[]>(baseUrl + 'to-do-list').subscribe(result => {
       this.tasks = result;
     }, error => console.error(error));
-  }
+ }
 
   ngOnInit() {
-  }
+    }
 
   public toDoList: Task[] = [];
 
@@ -28,7 +29,16 @@ export class ToDoListComponent implements OnInit{
     if (index > -1) {
       this.toDoList.splice(index, 1);
     }
-  
-  }
 
+  }
 }
+
+interface TaskList {
+  Description: string;
+  IsDone: boolean;
+  UserId: string;
+}
+
+
+
+
