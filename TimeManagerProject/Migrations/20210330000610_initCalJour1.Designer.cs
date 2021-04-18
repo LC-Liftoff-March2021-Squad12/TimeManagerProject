@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TimeManagerProject.Data;
 
 namespace TimeManagerProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210330000610_initCalJour1")]
+    partial class initCalJour1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -301,13 +303,11 @@ namespace TimeManagerProject.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.HasKey("calendarId");
-
 
                     b.HasIndex("UserId");
 
@@ -316,8 +316,6 @@ namespace TimeManagerProject.Migrations
 
             modelBuilder.Entity("TimeManagerProject.Models.CalendarEntry", b =>
                 {
-
-
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
@@ -350,21 +348,16 @@ namespace TimeManagerProject.Migrations
 
                     b.HasKey("Id");
 
-
                     b.HasIndex("calendarId");
 
                     b.ToTable("CalendarEntries");
                 });
 
-
             modelBuilder.Entity("TimeManagerProject.Models.JournalEntry", b =>
-
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-
 
                     b.Property<string>("Body")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -395,7 +388,6 @@ namespace TimeManagerProject.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-
                     b.Property<string>("UserId")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
@@ -403,9 +395,7 @@ namespace TimeManagerProject.Migrations
 
                     b.HasIndex("UserId");
 
-
                     b.ToTable("UserJournals");
-
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -461,11 +451,9 @@ namespace TimeManagerProject.Migrations
 
             modelBuilder.Entity("TimeManagerProject.Models.Calendar", b =>
                 {
-
                     b.HasOne("TimeManagerProject.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
-
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -477,7 +465,6 @@ namespace TimeManagerProject.Migrations
                         .HasForeignKey("calendarId");
                 });
 
-
             modelBuilder.Entity("TimeManagerProject.Models.JournalEntry", b =>
                 {
                     b.HasOne("TimeManagerProject.Models.JournalList", null)
@@ -486,7 +473,6 @@ namespace TimeManagerProject.Migrations
                 });
 
             modelBuilder.Entity("TimeManagerProject.Models.JournalList", b =>
-
                 {
                     b.HasOne("TimeManagerProject.Models.ApplicationUser", "User")
                         .WithMany()
