@@ -9,7 +9,7 @@
     <li> *ngFor="let task of toDoList" [class.completed]="task.completed">
       <div class="view">
         <input class="toggle" type="checkbox" (click)="toggleTaskCompleted(task)" [checked]="task.completed" />
-        <label {{task.description}}</label>
+        <label> {{taskEntry.description}}</label>
         <button class="deleteTask" (click)="deleteTask(task)"></button>
       </div>
     </li>
@@ -17,7 +17,7 @@
 </section>
 
 <footer class="footer" *ngIf="task.length > 0">
-  <span class="task-count"><strong>{{task.length}}</strong> {{task.length == 1? 'task': 'tasks'}} left </span>
+  <span class="task-count"><strong>{{taskEntry.length}}</strong> {{taskEntry.length == 1? 'task': 'tasks'}} left </span>
 </footer>
 </section>
 
@@ -36,7 +36,7 @@
 
   <div>
     <span class="name"> Task: </span>
-    <input [(ngModel)]="task.task" type="text" id="myTask" placeholder="Enter a task" />
+    <input [(ngModel)]="task.taskEntry" type="text" id="myTask" placeholder="Enter a task" />
   </div>
 
   <div>
