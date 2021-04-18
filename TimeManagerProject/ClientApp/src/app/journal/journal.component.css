@@ -15,10 +15,12 @@ div{
     background-color: royalblue;
     margin-right: .25cm;
     color: white;
+    padding-left: 1cm;
+    padding-right: 1cm;
 }
 
 #entries{
-   padding-left: 4cm;
+   padding-left: 2.5cm;
    color: rgb(2, 19, 70);
 
 }
