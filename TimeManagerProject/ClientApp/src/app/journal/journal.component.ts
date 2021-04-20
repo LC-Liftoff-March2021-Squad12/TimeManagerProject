@@ -16,11 +16,11 @@ date = '';
 journal = '';
 entries=[];
 
-  getValues(){
-    this.title = document.getElementById('title').value + ' ';
-    this.date = document.getElementById('date').value;
-    this.journal = document.getElementById('journal').value;
-  }
+  // getValues(){
+  //   this.title = document.getElementById('title');
+  //   this.date = document.getElementById('date');
+  //   this.journal = document.getElementById('journal');
+  // }
 
 
 }
