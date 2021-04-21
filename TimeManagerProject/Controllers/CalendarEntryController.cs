@@ -28,9 +28,6 @@ namespace TimeManagerProject.Controllers
             return DbContext.CalendarEntries.ToList();
         }
 
-        //[HttpPost]
-        //public ActionResult
-
         [HttpGet]
         [Route("{CalendarId}")]
         public ActionResult GetUserCalendar([FromRoute] int calendarId)
@@ -49,6 +46,23 @@ namespace TimeManagerProject.Controllers
 
                 return Ok(calendarEvent);
             }
+
+        [HttpPost]
+        public ActionResult AddEvent(CalendarEntry newEvent)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (newEvent == null)
+            {
+                return NotFound();
+            }
+            DbContext.CalendarEntries.Add(newEvent);
+            DbContext.SaveChanges();
+            return Ok(newEvent);
+        }
 
         [HttpDelete("{id}")]
         public ActionResult DeleteEvent([FromRoute] int id)
@@ -71,5 +85,31 @@ namespace TimeManagerProject.Controllers
             return Ok(calendarEvent);
         }
 
+        [HttpPost]
+        public ActionResult EditEvent(int id, CalendarEntry newEvent)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (newEvent == null)
+            {
+                return NotFound();
+            }
+
+            var calendarEvent = DbContext.CalendarEntries.Find(id);
+
+            calendarEvent.ApptEndDate = newEvent.ApptEndDate;
+            calendarEvent.ApptStartDate = newEvent.ApptStartDate;
+            calendarEvent.ApptStartTime = newEvent.ApptStartTime;
+            calendarEvent.ApptEndTime = newEvent.ApptEndTime;
+            calendarEvent.Description = newEvent.Description;
+            calendarEvent.Title = newEvent.Title;
+
+            DbContext.CalendarEntries.Update(calendarEvent);
+            DbContext.SaveChanges();
+            return Ok(newEvent);
+        }
     }
 }
