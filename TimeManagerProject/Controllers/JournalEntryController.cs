@@ -11,7 +11,7 @@ namespace TimeManagerProject.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("[controller]")]
+    [Route("journal")]
     public class JournalEntryController : ControllerBase
     {
         public readonly ApplicationDbContext DbContext;
@@ -100,6 +100,7 @@ namespace TimeManagerProject.Controllers
 
             origJournal.Title = editedJournal.Title;
             origJournal.Body = editedJournal.Body;
+            editedJournal.Date = editedJournal.Date;
 
             DbContext.JournalEntries.Update(origJournal);
             DbContext.SaveChanges();

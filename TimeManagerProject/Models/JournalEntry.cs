@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TimeManagerProject.Models
 {
@@ -15,18 +16,21 @@ namespace TimeManagerProject.Models
 		[StringLength(100)]
 		public string Title {get; set;}
 		public string Body {get; set;}
+		[Required]
+		[Key]
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int Id {get; set;}
-		public DateTime Date { get; set; }
+		public string Date { get; set; }
 
 		public JournalEntry()
 			{
 			}
 
-		public JournalEntry(string title, string body)
+		public JournalEntry(string title, string body, string date)
 		{
 			Title = title;
 			Body = body;
-			Date = DateTime.Now;
+			Date = date;
 		}
 
         public override string ToString()
