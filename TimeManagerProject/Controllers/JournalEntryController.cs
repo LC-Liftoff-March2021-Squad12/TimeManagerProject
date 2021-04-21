@@ -9,9 +9,9 @@ using TimeManagerProject.Models;
 
 namespace TimeManagerProject.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
-    [Route("[controller]")]
+    [Route("/journal")]
     public class JournalEntryController : ControllerBase
     {
         public readonly ApplicationDbContext DbContext;
