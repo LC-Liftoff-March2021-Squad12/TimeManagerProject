@@ -18,6 +18,7 @@ import { ToDoListComponent } from './to-do-list/to-do-list.component';
 import { JournalComponent } from './journal/journal.component';
 import { TimerComponent } from './timer/timer.component';
 import { CountdownGlobalConfig, CountdownModule } from 'ngx-countdown';
+// import { LoginMenuComponent } from 'src/api-authorization/login-menu/login-menu.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CountdownGlobalConfig, CountdownModule } from 'ngx-countdown';
     NavbarComponent,
     ToDoListComponent,
     JournalComponent,
-    TimerComponent
+    TimerComponent,
+    // LoginMenuComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

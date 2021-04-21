@@ -1,35 +1,23 @@
-<!-- 
 <div class="container">
     <div class="md-form">
-    <input type="text" placeholder="Title" id="title" ng-required="true"
-    >
-    <input placeholder="Date" ng-required="true" type="text" id="date">
+    <input type="text" placeholder="Title" id="title" ng-required="true">
+    <input placeholder="date" ng-required="true" type="text" id="date">
     <textarea class="md-textarea form-control " placeholder="Journal your heart out!" type="text" id="journal"></textarea>
-    <button type="button" (click)="getValues()" (clickUp)="saveEntries()">Save</button>
-    
+    <button type="button" (click)="getValues()">Save</button>
   </div>
 
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-xs" id="Title">Title and Date</div>
-    <div class="col-lg" id="Journal">Journal Entry</div>
+    <div class="col-sm" id="Title">Title/Date</div>
+    <div class="col-md" id="Journal">Journal Entries</div>
   </div>
-</div> -->
-<table class="table table-striped" aria-labelledby="tableLabel" *ngIf="details">
-<thead>
-  <tr>
-    <th>Title</th>
-    <th>Date</th>
-    <th>Journal Entry</th>
-  </tr>
-</thead>
-<tbody>
-
-<tr *ngFor="let detail of details">
-    <td>{{ detail.title }} {{ detail.date}}</td>
-    <td> {{ detail.journalEntry }} </td>
+</div>
+<div class="container" id="entries">
+  <div class="row" >
+    <!-- <a class="col-sm">{{ title.value }} {{ date.value }}</a>
+    <a class="col-sm"> {{ journal.value }} </a> -->
     <button type="button">Delete</button>
     <button type="button">Edit</button>
-</tbody>
-  </table>
+  </div>
+</div>
