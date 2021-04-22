@@ -7,6 +7,7 @@ var TaskEntry = /** @class */ (function () {
         this.description = "";
         this.isDone = false;
         this.toDoList = [];
+        this.completed = [];
         Object.assign(this, values);
     }
     TaskEntry.prototype.addTask = function () {
@@ -15,6 +16,11 @@ var TaskEntry = /** @class */ (function () {
     TaskEntry.prototype.deleteTask = function (index) {
         if (index > -1) {
             this.toDoList.splice(index, 1);
+        }
+    };
+    TaskEntry.prototype.completedTask = function (index, boolean) {
+        if (index > -1 && this.isDone == true) {
+            this.toDoList.pop();
         }
     };
     return TaskEntry;

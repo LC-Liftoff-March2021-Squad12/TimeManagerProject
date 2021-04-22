@@ -1,7 +1,7 @@
 <div class="card-body">
     <div class="mb-3">
       <h1> Time to Work! </h1>
-      <countdown #cd1 [config]="{ leftTime: 60 * 30 }"></countdown>
+      <countdown #cd1 [config]="{ leftTime: 60 * 30}"></countdown>
       <div>
         <button (click)="cd1.begin()" class="btn btn-link btn-sm">Start</button>
         <button (click)="cd1.stop()" class="btn btn-link btn-sm">Stop</button>
@@ -11,7 +11,7 @@
       </div>
       <div class="mb-3">
       <h1> Time to Play! </h1>
-        <countdown #cd2 [config]="{ leftTime: 60 * 5 }"></countdown>
+        <countdown #cd2 [config]="{ leftTime: 60 * 5}"></countdown>
           <div>
             <button (click)="cd2.begin()" class="btn btn-link btn-sm">Start</button>
             <button (click)="cd2.stop()" class="btn btn-link btn-sm">Stop</button>

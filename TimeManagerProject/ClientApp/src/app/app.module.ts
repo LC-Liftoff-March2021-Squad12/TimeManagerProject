@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
-
+import { RouterModule, Routes } from '@angular/router';
+//import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
@@ -18,6 +19,12 @@ import { ToDoListComponent } from './to-do-list/to-do-list.component';
 import { JournalComponent } from './journal/journal.component';
 import { TimerComponent } from './timer/timer.component';
 import { CountdownGlobalConfig, CountdownModule } from 'ngx-countdown';
+//import { TaskService } from './task-service.service';
+
+
+const appRoutes: Routes = [
+  { path: '', component: AppComponent }
+];
 
 @NgModule({
   declarations: [
@@ -34,6 +41,8 @@ import { CountdownGlobalConfig, CountdownModule } from 'ngx-countdown';
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    //AppRoutingModule,
+    HttpModule,
     HttpClientModule,
     FormsModule,
     ApiAuthorizationModule,
@@ -48,6 +57,7 @@ import { CountdownGlobalConfig, CountdownModule } from 'ngx-countdown';
     ])
   ],
   providers: [
+    //TaskService,
     CountdownGlobalConfig,
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }
   ],

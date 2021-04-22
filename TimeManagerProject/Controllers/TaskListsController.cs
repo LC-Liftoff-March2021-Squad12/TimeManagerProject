@@ -17,8 +17,9 @@ using System.Xml.Linq;
 namespace TimeManagerProject.Controllers
 {
     [Authorize]
+    [Produces("application/json")]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class TaskListsController : ControllerBase
     {
         public readonly ApplicationDbContext DbContext;
@@ -35,10 +36,10 @@ namespace TimeManagerProject.Controllers
         }
 
         [HttpGet]
-        [Route("{TaskId}")]
-        public ActionResult GetTasks([FromRoute] int taskId)
+        [Route("{Id}")]
+        public ActionResult GetTasks([FromRoute] int Id)
         {
-            var taskList = DbContext.Tasks.Find(taskId);
+            var taskList = DbContext.Tasks.Find(Id);
             
             if (!ModelState.IsValid)
             {
@@ -53,7 +54,7 @@ namespace TimeManagerProject.Controllers
             return Ok(taskList);
         }
 
-        [HttpPut]
+        [HttpPut("{Id}")]
         public ActionResult AddTask (TaskEntry newTask)
         {
             if (!ModelState.IsValid)
@@ -70,10 +71,10 @@ namespace TimeManagerProject.Controllers
             return Ok(newTask);
         }
 
-        [HttpDelete("{id}")]
-        public ActionResult DeleteTask ([FromRoute] int id)
+        [HttpDelete("{Id}")]
+        public ActionResult DeleteTask ([FromRoute] int Id)
         {
-            var taskEntry = DbContext.TaskEntries.Find(id);
+            var taskEntry = DbContext.TaskEntries.Find(Id);
 
             if (!ModelState.IsValid)
             {

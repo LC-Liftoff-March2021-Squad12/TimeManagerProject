@@ -1,4 +1,4 @@
-import { Task } from '../to-do-list/task.js';
+import { TaskEntry } from '../to-do-list/taskentry.js';
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -17,16 +17,15 @@ export class ToDoListComponent implements OnInit {
     }, error => console.error(error));
 
 
-
-    http.put<TaskList[]>(baseUrl + 'to-do-list').subscribe(result => {
-      this.tasks.push(new Task()) = result;
+    http.put<TaskList[]>(baseUrl + 'to-do-list', this.addTask).subscribe(result => {
+      this.tasks = result;
     }, error => console.error(error));
 
-    http.delete<TaskList[]>(baseUrl + 'to-do-list').subscribe(result => {
-      this.tasks.splice(Task) = result;
-    }, error => console.error(error));
+    //http.delete<TaskList[]>(baseUrl + 'to-do-list', this.deleteTask).subscribe(result => {
+    //  this.tasks = result;
+    //}, error => console.error(error));
 
-    http.post<TaskList[]>(baseUrl + 'to-do-list').subscribe(result => {
+    http.post<TaskList[]>(baseUrl + 'to-do-list', this.completedTask).subscribe(result => {
       this.tasks = result;
     }, error => console.error(error));
 
@@ -35,15 +34,23 @@ export class ToDoListComponent implements OnInit {
   ngOnInit() {
   }
 
-  public toDoList: Task[] = [];
+  public toDoList: TaskEntry[] = [];
+  public completed: TaskEntry[] = [];
+  public isDone: boolean;
 
   addTask() {
-    this.toDoList.push(new Task());
+    this.toDoList.push(new TaskEntry());
   }
 
   deleteTask(index: number) {
     if (index > -1) {
       this.toDoList.splice(index, 1);
+    }
+  }
+
+  completedTask(index: number, boolean: false) {
+    if (index > -1 && this.isDone == true) {
+      this.toDoList.pop();
     }
   }
 
