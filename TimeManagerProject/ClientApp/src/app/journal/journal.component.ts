@@ -8,35 +8,36 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./journal.component.css']
 })
 export class JournalComponent {
-private body: journalEntry;
+  public details: journalEntry[];
+private entry: journalEntry;
 private title:string;
 private date: string;
-private journal:string;
+private body:string;
 private entries: journalEntry; 
 
 constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
-  http.get<journalEntry[]>(baseUrl + 'journalEntry').subscribe(result => {
-    console.log(result);
-  }, error => console.error(error));
+  ///http.get<journalEntry[]>(baseUrl + 'journalEntry').subscribe(result => {
+   // this.details = result;
+ // }, error => console.error(error));
 }
 
 getValues(){
-  this.journal = (<HTMLInputElement>document.getElementById('journal')).value;
+  this.body = (<HTMLInputElement>document.getElementById('body')).value;
   this.title = (<HTMLInputElement>document.getElementById('title')).value;
   this.date = (<HTMLInputElement>document.getElementById('date')).value;
 
 //  console.log(this.journal + this.title + this.date);
-  this.body = {title: this.title, journal: this.journal, date: this.date};
-  this.http.post(this.baseUrl + 'journalEntry',this.body).subscribe(result => {
-    console.log(result);
+  this.entry = { title: this.title, body: this.body, date: this.date };
+
+  this.http.post<any>(this.baseUrl + 'journalEntry',this.entry).subscribe(result => {
+    this.entry = result;
   }, error => console.error(error));
-console.log(this.baseUrl + 'journalEntry',this.body);
 }
 }
 
 interface journalEntry {
   title: string;
-  journal: string;
+  body: string;
   date: string;
   // id: number; 
 }
