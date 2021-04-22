@@ -9,7 +9,7 @@ using TimeManagerProject.Models;
 
 namespace TimeManagerProject.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("[controller]")]
     public class JournalEntryController : ControllerBase
@@ -23,7 +23,7 @@ namespace TimeManagerProject.Controllers
         [HttpGet]
         public ActionResult<List<JournalEntry>> Get()
         {
-            return DbContext.JournalEntries.ToList();
+            return Ok(DbContext.JournalEntries.ToList());
         }
 
         [HttpGet]
@@ -83,7 +83,7 @@ namespace TimeManagerProject.Controllers
             return Ok(journalEntry);
         }
 
-        [HttpPost]
+        [HttpPut]
         public ActionResult EditJournal(int id, JournalEntry editedJournal)
         {
             if (!ModelState.IsValid)

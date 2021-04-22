@@ -16,7 +16,7 @@ namespace TimeManagerProject.Models
 		public string Title {get; set;}
 		public string Body {get; set;}
 		public int Id {get; set;}
-		public DateTime Date { get; set; }
+		public string Date { get; set; }
 
 		public JournalEntry()
 			{
@@ -26,7 +26,6 @@ namespace TimeManagerProject.Models
 		{
 			Title = title;
 			Body = body;
-			Date = DateTime.Now;
 		}
 
         public override string ToString()
