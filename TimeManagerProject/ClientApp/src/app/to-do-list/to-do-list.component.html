@@ -1,3 +1,28 @@
+<!--<div class="container">
+  <div class="md-form">
+    <input type="text" placeholder="Title" id="title" ng-required="true">
+    <input placeholder="date" ng-required="true" type="text" id="date">
+    <textarea class="md-textarea form-control " placeholder="Journal your heart out!" type="text" id="body"></textarea>
+    <button type="button" (click)="getValues()">Save</button>
+  </div>
+
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm" id="Title">Title/Date</div>
+    <div class="col-md" id="Journal">Journal Entries</div>
+  </div>
+</div>
+<div class="container" id="entries">
+  <div class="row">-->
+    <!-- <a class="col-sm">{{ title.value }} {{ date.value }}</a>
+    <a class="col-sm"> {{ body.value }} </a> -->
+    <!--<button type="button">Delete</button>
+    <button type="button">Edit</button>
+  </div>
+</div>-->
+
+
 <section class="todolist">
   <header class="header">
     <h1>To-do List</h1>
@@ -10,10 +35,10 @@
     </div>
     <ul class="todo-list">
       <li>
-        *ngFor="let task of TaskList; let i = index"> {{task}}
+        *ngFor="let task of TaskList; let i = index"> {{task.value}}
         <div class="view">
           <input class="toggle" type="checkbox" (click)="toggleTaskCompleted(task)" [checked]="task.completed" />
-          <label> {{taskEntry.description}}</label>
+          <label> {{taskEntry.description.value}}</label>
           <button class="deleteTask" (click)="deleteTask(task)"></button>
         </div>
       </li>
@@ -26,7 +51,7 @@
 </section>
 
 
-<h1>To-do List</h1>
+<!--<h1>To-do List</h1>
 <nav id="todo">
   <div class="todo-header">
   </div>
@@ -53,14 +78,7 @@
     <span class="saveTask">
       <button class="saveTask" (click)="saveTask(i)">Save Task</button>
     </span>
-   
+
   </div>
 
-</div>
-
-
-
-
-
-
-
+</div>-->
