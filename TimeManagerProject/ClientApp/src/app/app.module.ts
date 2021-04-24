@@ -19,12 +19,16 @@ import { ToDoListComponent } from './to-do-list/to-do-list.component';
 import { JournalComponent } from './journal/journal.component';
 import { TimerComponent } from './timer/timer.component';
 import { CountdownGlobalConfig, CountdownModule } from 'ngx-countdown';
+<<<<<<< HEAD
 //import { TaskService } from './task-service.service';
 
 
 const appRoutes: Routes = [
   { path: '', component: AppComponent }
 ];
+=======
+// import { LoginMenuComponent } from 'src/api-authorization/login-menu/login-menu.component';
+>>>>>>> master
 
 @NgModule({
   declarations: [
@@ -37,7 +41,8 @@ const appRoutes: Routes = [
     NavbarComponent,
     ToDoListComponent,
     JournalComponent,
-    TimerComponent
+    TimerComponent,
+    // LoginMenuComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
