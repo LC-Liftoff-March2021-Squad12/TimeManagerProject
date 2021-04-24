@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-//import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
@@ -19,16 +19,14 @@ import { ToDoListComponent } from './to-do-list/to-do-list.component';
 import { JournalComponent } from './journal/journal.component';
 import { TimerComponent } from './timer/timer.component';
 import { CountdownGlobalConfig, CountdownModule } from 'ngx-countdown';
-<<<<<<< HEAD
-//import { TaskService } from './task-service.service';
+import { TaskService } from './task-service.service';
 
 
 const appRoutes: Routes = [
   { path: '', component: AppComponent }
 ];
-=======
 // import { LoginMenuComponent } from 'src/api-authorization/login-menu/login-menu.component';
->>>>>>> master
+
 
 @NgModule({
   declarations: [
@@ -46,7 +44,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-    //AppRoutingModule,
+    AppRoutingModule,
     HttpModule,
     HttpClientModule,
     FormsModule,
@@ -62,7 +60,7 @@ const appRoutes: Routes = [
     ])
   ],
   providers: [
-    //TaskService,
+    TaskService,
     CountdownGlobalConfig,
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }
   ],

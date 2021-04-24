@@ -1,6 +1,7 @@
 import { TaskEntry } from '../to-do-list/taskentry.js';
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { TaskService } from '../task-service.service';
 
 @Component({
   selector: 'app-to-do-list-component',
@@ -9,26 +10,11 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class ToDoListComponent implements OnInit {
-  public tasks: TaskList[] = [];
+  public tasks: TaskList[];
+  private Description: string;
+  private IsDone: boolean;
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<TaskList[]>(baseUrl + 'to-do-list').subscribe(result => {
-      this.tasks = result;
-    }, error => console.error(error));
-
-
-    http.put<TaskList[]>(baseUrl + 'to-do-list', this.addTask).subscribe(result => {
-      this.tasks = result;
-    }, error => console.error(error));
-
-    //http.delete<TaskList[]>(baseUrl + 'to-do-list', this.deleteTask).subscribe(result => {
-    //  this.tasks = result;
-    //}, error => console.error(error));
-
-    http.post<TaskList[]>(baseUrl + 'to-do-list', this.completedTask).subscribe(result => {
-      this.tasks = result;
-    }, error => console.error(error));
-
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {  
   }
 
   ngOnInit() {
@@ -39,28 +25,42 @@ export class ToDoListComponent implements OnInit {
   public isDone: boolean;
 
   addTask() {
+    this.http.get<TaskList[]>(this.baseUrl + 'to-do-list').subscribe(result => {
+      this.tasks = result;
+    }, error => console.error(error));
+
+    this.http.put<TaskList[]>(this.baseUrl + 'to-do-list', this.addTask).subscribe(result => {
+      this.tasks = result;
+    }, error => console.error(error));
     this.toDoList.push(new TaskEntry());
   }
 
   deleteTask(index: number) {
+    this.http.delete<TaskList[]>(this.baseUrl + 'to-do-list').subscribe(result => {
+      this.tasks = result;
+    }, error => console.error(error));
     if (index > -1) {
       this.toDoList.splice(index, 1);
     }
   }
 
   completedTask(index: number, boolean: false) {
+    this.http.post<TaskList[]>(this.baseUrl + 'to-do-list', this.completedTask).subscribe(result => {
+      this.tasks = result;
+    }, error => console.error(error));
+
     if (index > -1 && this.isDone == true) {
       this.toDoList.pop();
     }
   }
-
+  
 }
 
 interface TaskList {
-  Id: number;
+  //Id: number;
   Description: string;
   IsDone: boolean;
-  UserId: string;
+  //UserId: string;
 }
 
 

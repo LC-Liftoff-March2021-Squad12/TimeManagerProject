@@ -52,6 +52,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\app-routing.module.ts" />
     <None Remove="ClientApp\src\app\to-do-list\TaskEntry.ts" />
     <None Remove="ClientApp\src\app\to-do-list\to-do-list.component.spec.ts" />
     <None Remove="ClientApp\src\app\to-do-list\to-do-list.component.ts" />

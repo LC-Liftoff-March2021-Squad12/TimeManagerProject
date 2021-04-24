@@ -35,19 +35,24 @@
     </div>
     <ul class="todo-list">
       <li>
-        *ngFor="let task of TaskList; let i = index"> {{task.value}}
+        *ngFor="let task of TaskList; let i = index"> {{task}}
         <div class="view">
-          <input class="toggle" type="checkbox" (click)="toggleTaskCompleted(task)" [checked]="task.completed" />
-          <label> {{taskEntry.description.value}}</label>
-          <button class="deleteTask" (click)="deleteTask(task)"></button>
+          <input class="toggle" type="checkbox" (click)="completedTask(task)" [checked]="task.completed" />
+          <label> {{taskEntry.description}}</label>
+          <button class="deleteTask" (click)="deleteTask(i)">Delete Task</button>
+        </div>
+        <div>
+          <span class="saveTask">
+            <button class="saveTask" (click)="saveTask(i)">Save Task</button>
+          </span>
         </div>
       </li>
     </ul>
   </section>
 
-<footer class="footer" *ngIf="task.length > 0">
-  <span class="task-count"><strong>{{taskEntry.length}}</strong> {{taskEntry.length == 1? 'task': 'tasks'}} left </span>
-</footer>
+  <footer class="footer" *ngIf="task.length > 0">
+    <span class="task-count"><strong>{{taskEntry.length}}</strong> {{taskEntry.length == 1? 'task': 'tasks'}} left </span>
+  </footer>
 </section>
 
 
