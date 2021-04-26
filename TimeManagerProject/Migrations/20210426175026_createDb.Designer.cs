@@ -9,8 +9,8 @@ using TimeManagerProject.Data;
 namespace TimeManagerProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210418010712_InitCreate")]
-    partial class InitCreate
+    [Migration("20210426175026_createDb")]
+    partial class createDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -303,50 +303,99 @@ namespace TimeManagerProject.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("userId")
+                    b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.HasKey("calendarId");
 
-                    b.HasIndex("userId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Calendars");
                 });
 
             modelBuilder.Entity("TimeManagerProject.Models.CalendarEntry", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("apptEndDate")
+                    b.Property<string>("ApptEndDate")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("apptEndTime")
+                    b.Property<string>("ApptEndTime")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("apptStartDate")
+                    b.Property<string>("ApptStartDate")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("apptStartTime")
+                    b.Property<string>("ApptStartTime")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
+                        .HasMaxLength(200);
+
+                    b.Property<DateTimeOffset>("PublishDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
+                        .HasMaxLength(100);
 
                     b.Property<int?>("calendarId")
                         .HasColumnType("int");
 
-                    b.Property<string>("description")
-                        .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
-                        .HasMaxLength(200);
-
-                    b.Property<DateTimeOffset>("publishDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.HasIndex("calendarId");
 
                     b.ToTable("CalendarEntries");
+                });
+
+            modelBuilder.Entity("TimeManagerProject.Models.JournalEntry", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Body")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Date")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("JournalListId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
+                        .HasMaxLength(100);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("JournalListId");
+
+                    b.ToTable("JournalEntries");
+                });
+
+            modelBuilder.Entity("TimeManagerProject.Models.JournalList", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserJournals");
                 });
 
             modelBuilder.Entity("TimeManagerProject.Models.TaskList", b =>
@@ -424,9 +473,9 @@ namespace TimeManagerProject.Migrations
 
             modelBuilder.Entity("TimeManagerProject.Models.Calendar", b =>
                 {
-                    b.HasOne("TimeManagerProject.Models.ApplicationUser", "user")
+                    b.HasOne("TimeManagerProject.Models.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("userId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -436,6 +485,20 @@ namespace TimeManagerProject.Migrations
                     b.HasOne("TimeManagerProject.Models.Calendar", null)
                         .WithMany("calendarEntries")
                         .HasForeignKey("calendarId");
+                });
+
+            modelBuilder.Entity("TimeManagerProject.Models.JournalEntry", b =>
+                {
+                    b.HasOne("TimeManagerProject.Models.JournalList", null)
+                        .WithMany("JournalEntries")
+                        .HasForeignKey("JournalListId");
+                });
+
+            modelBuilder.Entity("TimeManagerProject.Models.JournalList", b =>
+                {
+                    b.HasOne("TimeManagerProject.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("TimeManagerProject.Models.TaskList", b =>

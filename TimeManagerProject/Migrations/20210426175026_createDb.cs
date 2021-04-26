@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TimeManagerProject.Migrations
 {
-    public partial class InitCreate : Migration
+    public partial class createDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -193,14 +193,14 @@ namespace TimeManagerProject.Migrations
                 {
                     calendarId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    userId = table.Column<string>(nullable: false)
+                    UserId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Calendars", x => x.calendarId);
                     table.ForeignKey(
-                        name: "FK_Calendars_AspNetUsers_userId",
-                        column: x => x.userId,
+                        name: "FK_Calendars_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -228,27 +228,70 @@ namespace TimeManagerProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserJournals",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserJournals", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserJournals_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CalendarEntries",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    apptStartDate = table.Column<string>(nullable: true),
-                    apptEndDate = table.Column<string>(nullable: true),
-                    apptStartTime = table.Column<string>(nullable: true),
-                    apptEndTime = table.Column<string>(nullable: true),
-                    publishDate = table.Column<DateTimeOffset>(nullable: false),
-                    description = table.Column<string>(maxLength: 200, nullable: true),
+                    ApptStartDate = table.Column<string>(nullable: true),
+                    ApptEndDate = table.Column<string>(nullable: true),
+                    ApptStartTime = table.Column<string>(nullable: true),
+                    ApptEndTime = table.Column<string>(nullable: true),
+                    PublishDate = table.Column<DateTimeOffset>(nullable: false),
+                    Title = table.Column<string>(maxLength: 100, nullable: true),
+                    Description = table.Column<string>(maxLength: 200, nullable: true),
                     calendarId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CalendarEntries", x => x.id);
+                    table.PrimaryKey("PK_CalendarEntries", x => x.Id);
                     table.ForeignKey(
                         name: "FK_CalendarEntries_Calendars_calendarId",
                         column: x => x.calendarId,
                         principalTable: "Calendars",
                         principalColumn: "calendarId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "JournalEntries",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Title = table.Column<string>(maxLength: 100, nullable: true),
+                    Body = table.Column<string>(nullable: true),
+                    Date = table.Column<string>(nullable: true),
+                    JournalListId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_JournalEntries", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_JournalEntries_UserJournals_JournalListId",
+                        column: x => x.JournalListId,
+                        principalTable: "UserJournals",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -295,9 +338,9 @@ namespace TimeManagerProject.Migrations
                 column: "calendarId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Calendars_userId",
+                name: "IX_Calendars_UserId",
                 table: "Calendars",
-                column: "userId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DeviceCodes_DeviceCode",
@@ -309,6 +352,11 @@ namespace TimeManagerProject.Migrations
                 name: "IX_DeviceCodes_Expiration",
                 table: "DeviceCodes",
                 column: "Expiration");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_JournalEntries_JournalListId",
+                table: "JournalEntries",
+                column: "JournalListId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersistedGrants_Expiration",
@@ -323,6 +371,11 @@ namespace TimeManagerProject.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Tasks_UserId",
                 table: "Tasks",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserJournals_UserId",
+                table: "UserJournals",
                 column: "UserId");
         }
 
@@ -350,6 +403,9 @@ namespace TimeManagerProject.Migrations
                 name: "DeviceCodes");
 
             migrationBuilder.DropTable(
+                name: "JournalEntries");
+
+            migrationBuilder.DropTable(
                 name: "PersistedGrants");
 
             migrationBuilder.DropTable(
@@ -360,6 +416,9 @@ namespace TimeManagerProject.Migrations
 
             migrationBuilder.DropTable(
                 name: "Calendars");
+
+            migrationBuilder.DropTable(
+                name: "UserJournals");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
