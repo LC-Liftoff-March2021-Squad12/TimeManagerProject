@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./journal.component.css']
 })
 export class JournalComponent {
-  public details: journalEntry[];
+  public details: [journalEntry];
 public entry: [journalEntry];
 private title:string;
 private date: string;
