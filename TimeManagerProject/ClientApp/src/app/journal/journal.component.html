@@ -3,21 +3,20 @@
     <input type="text" placeholder="Title" id="title" ng-required="true">
     <input placeholder="date" ng-required="true" type="text" id="date">
     <textarea class="md-textarea form-control " placeholder="Journal your heart out!" type="text" id="body"></textarea>
-    <button type="button" (click)="getValues()">Save</button>
+    <button type="button" (click)="saveValues()">Save</button>
   </div>
 
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-sm" id="Title">Title/Date</div>
-    <div class="col-md" id="Journal">Journal Entries</div>
+    <div class="col-xl" id="Journal">Your Journal</div>
   </div>
 </div>
 <div class="container" id="entries">
-  <div class="row" >
-    <!-- <a class="col-sm">{{ title.value }} {{ date.value }}</a>
-    <a class="col-sm"> {{ body.value }} </a> -->
-    <button type="button">Delete</button>
-    <button type="button">Edit</button>
-  </div>
+     <a class="col-sm" *ngFor ="let entries of entry;">
+     <ul>
+       <li> {{ "Title: "+ entries.title + " "+ entries.date + " Body: "+ entries.body }}</li>
+    </ul>
+    </a>
+  <button type="button" (click)="getValues()">View Entries</button>
 </div>
