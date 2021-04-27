@@ -16,6 +16,7 @@ export class ToDoListComponent {
   }
 
   saveTask() {
+    this.toDoList.push(new TaskList);
     this.description = (<HTMLInputElement>document.getElementById('description')).value;
 
     this.task = [{ description: this.description, isDone: this.isDone }];
@@ -28,8 +29,6 @@ export class ToDoListComponent {
   getTask() {
     this.http.get<any>(this.baseUrl + 'to-do-list').subscribe(result => {
       this.task = result;
-
-
     }, error => console.error(error));
   }
   
@@ -38,11 +37,15 @@ export class ToDoListComponent {
   //}
 
   deleteTask(index: number) {
+    this.http.delete<any>(this.baseUrl + 'to-do-list').subscribe(result => {
+      this.task = result;
+    }, error => console.error(error));
+
     if (index > -1) {
       this.toDoList.splice(index, 1);
     }
-  
   }
+
 }
 
 interface TaskList {
