@@ -39,6 +39,13 @@
   <button class="getTask" (click)="getTask()">View Tasks</button>
 </div>
 
+<div class="task" *ngFor="let task of toDoList; let i = index">
+  <div>
+    <span class="delete">
+      <button class="deleteTask" (click)="deleteTask(i)"> Delete Task</button>
+    </span>
+  </div>
+</div>
 
 
 
