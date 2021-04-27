@@ -9,8 +9,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./journal.component.css']
 })
 export class JournalComponent {
-  public details: [journalEntry];
-public entry: [journalEntry];
+public details: [journalEntry];
+public entry: journalEntry;
 private title:string;
 private date: string;
 private body:string;
@@ -24,16 +24,17 @@ saveValues(){
   this.title = (<HTMLInputElement>document.getElementById('title')).value;
   this.date = (<HTMLInputElement>document.getElementById('date')).value;
 
-  this.entry = [{ title: this.title, body: this.body, date: this.date }];
+  this.entry = { title: this.title, body: this.body, date: this.date };
 
   this.http.post<any>(this.baseUrl + 'journalEntry', this.entry).subscribe(result => {
     this.entry = result;
   }, error => console.error(error));
+  
 }
 
 getValues(){
   this.http.get<any>(this.baseUrl + 'journalEntry').subscribe(result => {
-      this.entry = result;
+      this.details = result;
     
     
   }, error => console.error(error));
