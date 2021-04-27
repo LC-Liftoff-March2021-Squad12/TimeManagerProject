@@ -11,7 +11,6 @@ using TimeManagerProject.Data;
 
 namespace TimeManagerProject.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class CalendarEntryController: ControllerBase
@@ -85,7 +84,7 @@ namespace TimeManagerProject.Controllers
             return Ok(calendarEvent);
         }
 
-        [HttpPost]
+        [HttpPut]
         public ActionResult EditEvent(int id, CalendarEntry newEvent)
         {
             if (!ModelState.IsValid)
