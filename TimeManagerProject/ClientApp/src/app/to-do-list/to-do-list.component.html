@@ -33,7 +33,7 @@
 <div class="container" id="tasks">
   <a class="col-sm" *ngFor="let tasks of task;">
     <ul>
-      <li> {{ task.description + task.isDone}}</li>
+      <li> {{ tasks.description + tasks.isDone}}</li>
     </ul>
   </a>
   <button class="getTask" (click)="getTask()">View Tasks</button>
@@ -41,6 +41,9 @@
 
 <div class="task" *ngFor="let task of toDoList; let i = index">
   <div>
+    <ul>
+      <li> {{ task.description + task.isDone}}</li>
+    </ul>
     <span class="delete">
       <button class="deleteTask" (click)="deleteTask(i)"> Delete Task</button>
     </span>

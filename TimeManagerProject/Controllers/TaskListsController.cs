@@ -15,10 +15,11 @@ using Microsoft.EntityFrameworkCore;
 using System.Xml.Linq;
 
 namespace TaskLists.Controllers
-{
+{   [ApiController]
+    [Route("[controller]")]
     public class TaskListsController : ControllerBase
     {
-        ApplicationDbContext db;
+        public readonly ApplicationDbContext db;
 
         public TaskListsController(ApplicationDbContext db)
         {
@@ -34,6 +35,7 @@ namespace TaskLists.Controllers
 
         // GET: api/TaskLists/5
         [HttpGet]
+        [Route("{id}")]
         //[ResponseType(typeof(TaskList))]
         public ActionResult GetTaskList(int id)
         {
@@ -97,8 +99,8 @@ namespace TaskLists.Controllers
 
             db.Tasks.Add(taskList);
             db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = taskList.Id }, taskList);
+            return Ok(taskList);
+            //return CreatedAtRoute("DefaultApi", new { id = taskList.Id }, taskList);
         }
 
         // DELETE: api/TaskLists/5
