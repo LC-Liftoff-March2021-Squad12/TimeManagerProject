@@ -1,4 +1,4 @@
-<h1>To-do List</h1>
+<!--<h1>To-do List</h1>
 <nav id="todo">
   <div class="todo-header">
   </div>
@@ -21,10 +21,34 @@
     </span>
   </div>
 
+</div>-->
+
+<h1>To-do List</h1>
+
+  <div class="md-form">
+    <input type="text" placeholder="Add a task!" id="description" ng-required="true">
+    <button class="saveTask" (click)="saveTask()">Save Task</button>
+  </div>
+
+<div class="container" id="tasks">
+  <a class="col-sm" *ngFor="let tasks of task;">
+    <ul>
+      <li> {{ tasks.description + tasks.isDone}}</li>
+    </ul>
+  </a>
+  <button class="getTask" (click)="getTask()">View Tasks</button>
 </div>
 
-
-
+<div class="task" *ngFor="let task of toDoList; let i = index">
+  <div>
+    <ul>
+      <li> {{ task.description + task.isDone}}</li>
+    </ul>
+    <span class="delete">
+      <button class="deleteTask" (click)="deleteTask(i)"> Delete Task</button>
+    </span>
+  </div>
+</div>
 
 
 
