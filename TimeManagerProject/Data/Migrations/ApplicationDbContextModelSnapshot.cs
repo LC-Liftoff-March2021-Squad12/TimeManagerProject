@@ -405,15 +405,10 @@ namespace TimeManagerProject.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<bool>("IsDone")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+                    b.Property<string>("IsDone")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Tasks");
                 });
@@ -493,13 +488,6 @@ namespace TimeManagerProject.Migrations
                 });
 
             modelBuilder.Entity("TimeManagerProject.Models.JournalList", b =>
-                {
-                    b.HasOne("TimeManagerProject.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("TimeManagerProject.Models.TaskList", b =>
                 {
                     b.HasOne("TimeManagerProject.Models.ApplicationUser", "User")
                         .WithMany()

@@ -4,13 +4,13 @@
 
 input {
     font-size: 18px;
-    color: black;
+    color: blueviolet;
 }
 
-.addTask {
+.saveTask {
     padding: 2.5px;
     width: 40%;
-    background-color: lightgreen;
+    background-color: lightpink;
     float: inherit;
     text-align: center;
     font-size: 15px;
@@ -19,14 +19,14 @@ input {
     border-radius: 0;
 }
 
-.addTask:hover {
-    background-color: limegreen;
+.saveTask:hover {
+    background-color: lightgreen;
 }
 
-.deleteTask {
+.getTask {
   padding: 2.5px;
   width: 40%;
-  background-color: lightgrey;
+  background-color: lightskyblue;
   float: inherit;
   text-align: center;
   font-size: 15px;
@@ -34,12 +34,23 @@ input {
   transition: 0.2s;
   border-radius: 0;
 }
-.deleteTask:hover {
+.getTask:hover {
     background-color: lightsalmon;
 }
 
-.name {
-    background-color: lightpink;
+.deleteTask {
+  padding: 2.5px;
+  width: 40%;
+  background-color: mediumpurple;
+  float: inherit;
+  text-align: center;
+  font-size: 15px;
+  cursor: default;
+  transition: 0.2s;
+  border-radius: 0;
 }
+
+
+
 
 

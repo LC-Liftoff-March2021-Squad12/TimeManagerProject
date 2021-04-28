@@ -1,8 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-
-
 @Component({
   selector: 'journal-home',
   templateUrl: './journal.component.html',
@@ -34,12 +32,8 @@ saveValues(){
 getValues(){
   this.http.get<any>(this.baseUrl + 'journalEntry').subscribe(result => {
       this.entry = result;
-    
-    
-  }, error => console.error(error));
- 
-}
-
+    }, error => console.error(error));
+  }
 }
 
 interface journalEntry {
